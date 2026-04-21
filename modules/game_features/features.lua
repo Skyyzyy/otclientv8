@@ -14,9 +14,29 @@ function updateFeatures(version)
     
     -- you can add custom features here, list of them is in the modules\gamelib\const.lua
     g_game.enableFeature(GameBot)
-    --g_game.enableFeature(GameExtendedOpcode)
-    --g_game.enableFeature(GameMinimapLimitedToSingleFloor) -- it will generate minimap only for current floor
-    --g_game.enableFeature(GameSpritesAlphaChannel)
+	
+    -- g_game.enableFeature(GameMagicEffectU16)
+    -- g_game.enableFeature(GameDistanceEffectU16)
+    -- g_game.enableFeature(GameDoubleHealth)
+
+
+
+
+
+
+	g_game.enableFeature(GameExtendedOpcode)
+    g_game.enableFeature(GameSkillsBase)
+    g_game.enableFeature(GamePlayerMounts)
+    g_game.enableFeature(GameOfflineTrainingTime)
+    g_game.enableFeature(GameDoubleSkills)
+    g_game.enableFeature(GameBaseSkillU16)
+    g_game.enableFeature(GameAdditionalSkills)
+	g_game.enableFeature(GameExtendedClientPing)
+	g_game.enableFeature(GameDoublePlayerGoodsMoney)
+	
+    g_game.enableFeature(GameIdleAnimations)
+    g_game.enableFeature(GameEnhancedAnimations)
+    g_game.enableFeature(GameSpritesU32)
     
     if(version >= 770) then
         g_game.enableFeature(GameLooktypeU16)

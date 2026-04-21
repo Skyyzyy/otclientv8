@@ -34,7 +34,9 @@
 #include <framework/http/http.h>
 
 #if !defined(ANDROID)
-#include <boost/process.hpp>
+// Disable boost::process due to API changes in Boost 1.67+
+// TODO: Update to use new boost::process v2 API
+//#include <boost/process.hpp>
 #endif
 
 #include <locale>
@@ -186,7 +188,9 @@ void Application::close()
 
 void Application::restart()
 {
-#if !defined(ANDROID)
+    // Disabled due to boost::process API changes in Boost 1.67+
+    // TODO: Reimplement using boost::process v2 or native Windows CreateProcess
+    #if 0 && not(defined(ANDROID) || defined(FREE_VERSION))
     boost::process::child c(g_resources.getBinaryName());
     std::error_code ec2;
     if (c.wait_for(std::chrono::seconds(1), ec2)) {
@@ -195,13 +199,16 @@ void Application::restart()
     c.detach();
     quick_exit();
 #else
+    g_logger.info("Application restart requested. Please restart manually.");
     exit();
 #endif
 }
 
 void Application::restartArgs(const std::vector<std::string>& args)
 {
-#if !defined(ANDROID)
+    // Disabled due to boost::process API changes in Boost 1.67+
+    // TODO: Reimplement using boost::process v2 or native Windows CreateProcess
+    #if 0 && not(defined(ANDROID) || defined(FREE_VERSION))
     boost::process::child c(g_resources.getBinaryName(), boost::process::args(args));
     std::error_code ec2;
     if (c.wait_for(std::chrono::seconds(1), ec2)) {
@@ -210,6 +217,7 @@ void Application::restartArgs(const std::vector<std::string>& args)
     c.detach();
     quick_exit();
 #else
+    g_logger.info("Application restart with args requested. Please restart manually.");
     exit();
 #endif
 }
